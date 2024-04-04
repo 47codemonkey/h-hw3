@@ -1,19 +1,15 @@
 import { useAnimals } from './hook';
 
+import './animals.css';
+
 export const Animals = ({ animals }) => {
   const { borderWidth, selectedAnimals } = useAnimals({ animals });
 
   return animals.length ? (
-    <table style={{ borderCollapse: 'collapse', border: `solid ${borderWidth}px black` }}>
+    <table className="animals-table" style={{ borderWidth: `${borderWidth}px` }}>
       <tbody>
         {animals.map((animal, idx) => (
-          <tr
-            key={idx}
-            style={{
-              color: selectedAnimals.includes(animal) ? 'green' : 'black',
-              fontWeight: selectedAnimals.includes(animal) ? 'bold' : 'normal',
-            }}
-          >
+          <tr key={idx} className={selectedAnimals.includes(animal) ? 'selected-row' : ''}>
             <td>{animal.icon}</td>
             <td>{animal.type}</td>
           </tr>
